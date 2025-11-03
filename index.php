@@ -51,6 +51,7 @@ switch ($url) {
     case 'teacher/delete':
         include 'modules/teachers/delete.php';
         break;
+
     case 'courses':
         include 'modules/courses/list.php';
         break;
@@ -63,6 +64,20 @@ switch ($url) {
 
     case 'courses/delete':
         include 'modules/courses/delete.php';
+        break;
+
+        case 'scores':
+        include 'modules/scores/list.php';
+        break;
+    case 'scores/add':
+        include 'modules/scores/add.php';
+        break;
+    case 'scores/edit':
+        include 'modules/scores/edit.php';
+        break;
+
+    case 'scores/delete':
+        include 'modules/scores/delete.php';
         break;
         
     case 'logout':

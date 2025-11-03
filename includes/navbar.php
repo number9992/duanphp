@@ -49,7 +49,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     <a href="?url=student">Sinh viên</a>
     <a href="?url=teacher">Giảng viên</a>
     <a href="?url=courses">Môn học</a>
-    <a href="/modules/scores/list.php">Điểm</a>
+    <a href="?url=scores">Điểm</a>
   </div>
   <div class="nav-right">
     <?php if (isset($_SESSION['user_id'])): ?>

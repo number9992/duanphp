@@ -1,8 +1,8 @@
 <?php
 // config/db.php
-$DB_HOST = 'localhost';
+$DB_HOST = '127.0.0.1:3307';
 $DB_USER = 'root';
-$DB_PASS = '572005';
+$DB_PASS = '';
 $DB_NAME = 'student_management';
 
 $conn = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
