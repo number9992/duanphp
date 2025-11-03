@@ -45,7 +45,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 <nav class="navbar">
   <div class="nav-left">
     <a href="/index.php" class="brand">QL Sinh viên</a>
-    <a href="/dashboard.php">Dashboard</a>
+    <a href="?url=dashboard">Dashboard</a>
     <a href="?url=student">Sinh viên</a>
     <a href="?url=teacher">Giảng viên</a>
     <a href="?url=courses">Môn học</a>
