@@ -48,7 +48,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     <a href="/dashboard.php">Dashboard</a>
     <a href="?url=student">Sinh viên</a>
     <a href="?url=teacher">Giảng viên</a>
-    <a href="/modules/courses/list.php">Môn học</a>
+    <a href="?url=courses">Môn học</a>
     <a href="/modules/scores/list.php">Điểm</a>
   </div>
   <div class="nav-right">

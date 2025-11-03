@@ -48,6 +48,22 @@ switch ($url) {
         include 'modules/teachers/edit.php';
         break;
 
+    case 'teacher/delete':
+        include 'modules/teachers/delete.php';
+        break;
+    case 'courses':
+        include 'modules/courses/list.php';
+        break;
+    case 'courses/add':
+        include 'modules/courses/add.php';
+        break;
+    case 'courses/edit':
+        include 'modules/courses/edit.php';
+        break;
+
+    case 'courses/delete':
+        include 'modules/courses/delete.php';
+        break;
     case 'logout':
         include '/logout.php';
         break;

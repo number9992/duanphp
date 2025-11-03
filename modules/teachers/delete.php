@@ -8,5 +8,5 @@ if ($id) {
     $stmt->bind_param('i',$id);
     $stmt->execute();
 }
-header('Location:list.php');
+header('Location:?url=teacher');
 exit;

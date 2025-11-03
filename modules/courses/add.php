@@ -1,45 +1,105 @@
+
 <?php
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../includes/functions.php';
 requireLogin();
 
-$students = $conn->query("SELECT id,name FROM students ORDER BY name");
-$courses = $conn->query("SELECT id,name FROM courses ORDER BY name");
+$teachers = $conn->query("SELECT id,name FROM teachers ORDER BY name");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $student_id = intval($_POST['student_id'] ?? 0);
-    $course_id = intval($_POST['course_id'] ?? 0);
-    $score = floatval($_POST['score'] ?? 0);
+    $name = trim($_POST['name'] ?? '');
+    $teacher_id = intval($_POST['teacher_id'] ?? 0);
+    $description = trim($_POST['description'] ?? '');
 
-    if ($student_id && $course_id) {
-        $stmt = $conn->prepare("INSERT INTO scores (student_id,course_id,score) VALUES (?,?,?)");
-        $stmt->bind_param('iid',$student_id,$course_id,$score);
-        if ($stmt->execute()) { header('Location:list.php'); exit; } else $err = $stmt->error;
-    } else $err = "Chọn sinh viên và môn học.";
+    if ($name) {
+        $stmt = $conn->prepare("INSERT INTO courses (name,teacher_id,description) VALUES (?,?,?)");
+        $stmt->bind_param('sis',$name,$teacher_id,$description);
+        if ($stmt->execute()) { header('Location:?url=courses'); exit; } else $err = $stmt->error;
+    } else $err = "Tên môn bắt buộc.";
 }
 
 include __DIR__ . '/../../includes/header.php';
 ?>
-<h2>Thêm Điểm</h2>
+<style>
+    /* Form container */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Form row */
+.form-row {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.form-row label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Inputs and textarea */
+.form-row input,
+.form-row select,
+.form-row textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Button */
+button.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Error message */
+p[style*="color:red"] {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+</style>
+<h2>Thêm Môn học</h2>
 <?php if(isset($err)): ?><p style="color:red"><?= esc($err) ?></p><?php endif; ?>
 <form method="post">
-    <div class="form-row"><label>Sinh viên</label>
-        <select name="student_id" required>
-            <option value="">-- Chọn --</option>
-            <?php while($s = $students->fetch_assoc()): ?>
-                <option value="<?= $s['id'] ?>"><?= esc($s['name']) ?></option>
+    <div class="form-row"><label>Tên môn</label><input name="name" required></div>
+    <div class="form-row"><label>Giảng viên</label>
+        <select name="teacher_id">
+            <option value="0">-- Chọn --</option>
+            <?php while($t = $teachers->fetch_assoc()): ?>
+                <option value="<?= $t['id'] ?>"><?= esc($t['name']) ?></option>
             <?php endwhile; ?>
         </select>
     </div>
-    <div class="form-row"><label>Môn học</label>
-        <select name="course_id" required>
-            <option value="">-- Chọn --</option>
-            <?php while($c = $courses->fetch_assoc()): ?>
-                <option value="<?= $c['id'] ?>"><?= esc($c['name']) ?></option>
-            <?php endwhile; ?>
-        </select>
-    </div>
-    <div class="form-row"><label>Điểm</label><input name="score" type="number" step="0.01" min="0" max="100" required></div>
+    <div class="form-row"><label>Mô tả</label><textarea name="description"></textarea></div>
     <button class="btn">Lưu</button>
 </form>
 <?php include __DIR__ . '/../../includes/footer.php'; ?>

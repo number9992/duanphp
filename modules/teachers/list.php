@@ -101,7 +101,7 @@ footer {
         <td><?= esc($row['department']) ?></td>
         <td>
             <a href="?url=teacher/edit&id=<?= $row['id'] ?>">Sửa</a>
-            <a href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a>
+            <a href="?url=teacher/delete&id=<?= $row['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a>
         </td>
     </tr>
     <?php endwhile; ?>

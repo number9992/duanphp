@@ -83,6 +83,7 @@ footer {
     font-size: 14px;
 }</style>
 <h2>Danh sách Sinh viên</h2>
+
 <a class="btn" href="?url=student/add">+ Thêm sinh viên</a>
 <table>
     <tr><th>ID</th><th>Ảnh</th><th>Họ tên</th><th>Email</th><th>Phone</th><th>Lớp</th><th>Hành động</th></tr>
