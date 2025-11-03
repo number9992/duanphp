@@ -45,7 +45,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 <nav class="navbar">
   <div class="nav-left">
     <a href="/index.php" class="brand">QL Sinh viên</a>
-    <a href="/dashboard.php">Dashboard</a>
+    <a href="?url=dashboard">Dashboard</a>
     <a href="?url=student">Sinh viên</a>
     <a href="?url=teacher">Giảng viên</a>
     <a href="?url=courses">Môn học</a>
@@ -54,7 +54,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
   <div class="nav-right">
     <?php if (isset($_SESSION['user_id'])): ?>
       <span>Xin chào, <?= htmlspecialchars($_SESSION['user_name']) ?></span>
-      <a href="quanlySinhVienGiangVien/auth/login.php">Đăng xuất</a>
+      <a href="auth/logout.php">Đăng xuất</a>
       
     <?php else: ?>
         <a href="?url=register">đăng ký </a>
