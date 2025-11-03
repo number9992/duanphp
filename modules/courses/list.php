@@ -86,7 +86,7 @@ table td a:hover {
         <td><?= esc($r['name']) ?></td>
         <td><?= esc($r['teacher_name']) ?></td>
         <td><?= esc(mb_strimwidth($r['description'],0,80,'...')) ?></td>
-        <td><a href="?url=courses/edit&id=<?= $r['id'] ?>">Sửa</a> | <a href="delete.php?id=<?= $r['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a></td>
+        <td><a href="?url=courses/edit&id=<?= $r['id'] ?>">Sửa</a> | <a href="?url=courses/delete&id=<?= $r['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a></td>
     </tr>
     <?php endwhile; ?>
 </table>

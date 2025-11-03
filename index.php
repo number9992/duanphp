@@ -64,6 +64,7 @@ switch ($url) {
     case 'courses/delete':
         include 'modules/courses/delete.php';
         break;
+        
     case 'logout':
         include '/logout.php';
         break;
