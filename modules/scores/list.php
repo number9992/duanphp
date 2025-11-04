@@ -77,7 +77,7 @@ table td a:hover {
   text-decoration: underline;
 }
 </style>
-<a class="btn" href="?url=courses/add">+ Thêm điểm</a>
+<a class="btn" href="?url=scores/add">+ Thêm điểm</a>
 <table>
     <tr><th>ID</th><th>Sinh viên</th><th>Môn</th><th>Điểm</th><th>Hành động</th></tr>
     <?php while($r = $res->fetch_assoc()): ?>
@@ -86,7 +86,7 @@ table td a:hover {
         <td><?= esc($r['student_name']) ?></td>
         <td><?= esc($r['course_name']) ?></td>
         <td><?= esc($r['score']) ?></td>
-        <td><a href="edit.php?id=<?= $r['id'] ?>">Sửa</a> | <a href="delete.php?id=<?= $r['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a></td>
+        <td><a href="?url=scores/edit&id=<?= $r['id'] ?>">Sửa</a> | <a href="?url=scores/delete&id=<?= $r['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a></td>
     </tr>
     <?php endwhile; ?>
 </table>
