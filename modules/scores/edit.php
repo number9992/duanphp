@@ -104,7 +104,7 @@ p[style*="color:red"] {
     font-weight: bold;
     margin-bottom: 20px;
 }
-</style>
+</style> 
 
 <h2>Sửa Điểm</h2>
 

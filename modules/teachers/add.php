@@ -69,7 +69,7 @@ form {
 }
 
 .form-row input:focus {
-    border-color: #27ae60;
+    border-color: #ccc;
     outline: none;
 }
 
@@ -77,7 +77,7 @@ button.btn {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #27ae60;
+    background-color: #3498db;
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -88,7 +88,7 @@ button.btn {
 }
 
 button.btn:hover {
-    background-color: #219150;
+    background-color: #2980b9;
 }
 
 p[style="color:red"] {

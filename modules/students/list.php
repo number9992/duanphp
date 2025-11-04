@@ -6,82 +6,90 @@ include __DIR__ . '/../../includes/header.php';
 
 $res = $conn->query("SELECT * FROM students ORDER BY id DESC");
 ?>
-<style>body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8;
-    margin: 0;
-    padding: 0;
-    color: #333;
+<style>
+.page-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
 h2 {
-    text-align: center;
-    margin-top: 30px;
-    color: #2c3e50;
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
 }
 
 a.btn {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
 }
 
 a.btn:hover {
-    background-color: #2980b9;
+  background-color: #2980b9;
 }
 
 table {
-    width: 90%;
-    margin: 0 auto 40px auto;
-    border-collapse: collapse;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    background-color: white;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 table th, table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
 }
 
 table th {
-    background-color: #2c3e50;
-    color: white;
-    font-weight: 600;
+  background-color: #ecf0f1;
+  color: #34495e;
+  font-weight: 600;
+  text-align: center;
+}
+
+table td {
+  text-align: center;
 }
 
 table tr:hover {
-    background-color: #f1f1f1;
+  background-color: #f9f9f9;
 }
 
-img {
-    border-radius: 5px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+table td a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 4px 6px;
 }
 
-a {
-    color: #3498db;
-    text-decoration: none;
+table td a:hover {
+  text-decoration: underline;
 }
 
-a:hover {
-    text-decoration: underline;
-    color: #2980b9;
-}
+ footer {
+  text-align: center;
+} 
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #2c3e50;
-    color: white;
-    font-size: 14px;
-}</style>
+</style>
+
 <h2>Danh sách Sinh viên</h2>
 
 <a class="btn" href="?url=student/add">+ Thêm sinh viên</a>
@@ -96,8 +104,7 @@ footer {
         <td><?= esc($row['phone']) ?></td>
         <td><?= esc($row['class']) ?></td>
         <td>
-            <a href="?url=student/edit&id=<?= $row['id'] ?>">Sửa</a>
-            <a href="?url=student/delete&id=<?= $row['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a>
+            <a href="?url=student/edit&id=<?= $row['id'] ?>">Sửa</a> | <a href="?url=student/delete&id=<?= $row['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a>
         </td>
     </tr>
     <?php endwhile; ?>

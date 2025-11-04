@@ -76,6 +76,11 @@ table td a {
 table td a:hover {
   text-decoration: underline;
 }
+
+ footer {
+  text-align: center;
+} 
+
 </style>
 <a class="btn" href="?url=scores/add">+ Thêm điểm</a>
 <table>

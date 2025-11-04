@@ -28,46 +28,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include __DIR__ . '/../../includes/header.php';
 ?>
 <style>
-    <style>
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f4f6f9;
     margin: 0;
     padding: 20px;
+    color: #333;
 }
 
 h2 {
-    color: #333;
-    margin-bottom: 20px;
+    text-align: center;
+    color: #2c3e50;
+    font-size: 28px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .form-row {
-    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #555;
+.form-row label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #34495e;
 }
 
-input[type="text"],
-textarea,
-select {
-    padding: 10px;
+.form-row input,
+.form-row select,
+.form-row textarea {
+    padding: 10px 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 14px;
-    background-color: #fff;
-    transition: border-color 0.3s;
+    transition: border-color .3s ease;
 }
 
-input[type="text"]:focus,
-textarea:focus,
-select:focus {
-    border-color: #007bff;
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    border-color: #3498db;
     outline: none;
 }
 
@@ -77,28 +88,33 @@ textarea {
 }
 
 .btn {
-    background-color: #007bff;
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    font-size: 14px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color .3s ease;
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
 }
 
 p[style*="color:red"] {
-    background-color: #ffe6e6;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background: #ffe6e6;
     padding: 10px;
-    border: 1px solid #ff4d4d;
-    border-radius: 5px;
+    border-radius: 6px;
+    border: 1px solid #ffb3b3;
 }
 </style>
-</style>
+
 <h2>Sửa Môn học</h2>
 <?php if(isset($err)): ?><p style="color:red"><?= esc($err) ?></p><?php endif; ?>
 <form method="post">

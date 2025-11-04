@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../includes/functions.php';
 requireLogin();
 
-//  bắt dữ liệu bên người dùng nyhaapj 
+//  bắt dữ liệu bên người dùng nhập 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
