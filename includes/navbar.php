@@ -100,42 +100,63 @@ if (session_status() === PHP_SESSION_NONE) session_start();
   }
 
   /* --- MAIN CONTENT --- */
-  .main-content {
+  #main-content {
     margin-top: 60px;
     margin-left: 220px;
     padding: 20px;
-    transition: margin-left 0.3s ease;
+    min-height: calc(100vh - 60px);
+    transition: all 0.3s ease;
+    background: #f8f9fa;
   }
 
-  .sidebar.collapsed ~ .main-content {
+  .sidebar.collapsed ~ #main-content {
     margin-left: 60px;
+  }
+
+  /* Đảm bảo nội dung luôn nằm bên phải sidebar */
+  @media screen and (min-width: 768px) {
+    .wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+    #main-content {
+      flex: 1;
+      width: calc(100% - 220px);
+    }
+    .sidebar.collapsed ~ #main-content {
+      width: calc(100% - 60px);
+    }
   }
 </style>
 
-<nav class="navbar">
-  <div style="display: flex; align-items: center;">
-    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-    <span class="brand">QL Sinh viên</span>
-  </div>
-  <div class="nav-right">
-    <?php if (isset($_SESSION['user_id'])): ?>
-      <span>Xin chào, <?= htmlspecialchars($_SESSION['user_name']) ?></span>
-      <a href="auth/logout.php">Đăng xuất</a>
-    <?php else: ?>
-      <a href="?url=register">Đăng ký</a>
-      <a href="?url=login">Đăng nhập</a>
-    <?php endif; ?>
-  </div>
-</nav>
+<div class="page-container">
+  <nav class="navbar">
+    <div style="display: flex; align-items: center;">
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+      <span class="brand">QL Sinh viên</span>
+    </div>
+    <div class="nav-right">
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <span>Xin chào, <?= htmlspecialchars($_SESSION['user_name']) ?></span>
+        <a href="auth/logout.php">Đăng xuất</a>
+      <?php else: ?>
+        <a href="?url=register">Đăng ký</a>
+        <a href="?url=login">Đăng nhập</a>
+      <?php endif; ?>
+    </div>
+  </nav>
 
-<div class="sidebar" id="sidebar">
-  <a href="?url=dashboard"><i>🏠</i><span>Dashboard</span></a>
-  <a href="?url=student"><i>🎓</i><span>Sinh viên</span></a>
-  <a href="?url=teacher"><i>👨‍🏫</i><span>Giảng viên</span></a>
-  <a href="?url=courses"><i>📘</i><span>Môn học</span></a>
-  <a href="?url=scores"><i>📊</i><span>Điểm</span></a>
-</div>
-
+  <div class="wrapper">
+    <div class="sidebar" id="sidebar">
+      <a href="?url=dashboard"><i>🏠</i><span>Dashboard</span></a>
+      <a href="?url=student"><i>🎓</i><span>Sinh viên</span></a>
+      <a href="?url=teacher"><i>👨‍🏫</i><span>Giảng viên</span></a>
+      <a href="?url=courses"><i>📘</i><span>Môn học</span></a>
+      <a href="?url=scores"><i>📊</i><span>Điểm</span></a>
+    </div>
+    
+    <div id="main-content">
+      <div class="content-wrapper">
 <script>
   function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('collapsed');
