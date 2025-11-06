@@ -17,7 +17,6 @@ $res = $conn->query("SELECT * FROM teachers ORDER BY id DESC");
 h2 {
     text-align: center;
     margin: 30px 0;
-    font-size: 28px;
     color: #2c3e50;
 }
 
@@ -25,8 +24,9 @@ a.btn {
     display: block;
     width: fit-content;
     margin: 0 auto 20px auto;
+    margin-left:53px;
     padding: 10px 20px;
-    background-color: #27ae60;
+    background-color: #3498db;
     color: white;
     text-decoration: none;
     border-radius: 6px;
@@ -35,7 +35,7 @@ a.btn {
 }
 
 a.btn:hover {
-    background-color: #219150;
+    background-color: #3498db;
 }
 
 table {
@@ -81,10 +81,10 @@ a:hover {
 }
 
 footer {
-    text-align: center;
+   text-align: center;
     padding: 20px;
-    background-color: #34495e;
-    color: white;
+    background-color: #f4f6f8;
+    color: #2c3e50;
     font-size: 14px;
 }</style>
 <h2>Danh sách Giảng viên</h2>

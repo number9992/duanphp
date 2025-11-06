@@ -38,7 +38,7 @@ h2 {
 }
 
 form {
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
     background-color: #fff;
     padding: 30px;
@@ -77,7 +77,7 @@ button.btn {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #27ae60;
+    background-color: #3498db;
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -88,7 +88,7 @@ button.btn {
 }
 
 button.btn:hover {
-    background-color: #219150;
+    background-color: #2980b9;
 }
 
 p[style="color:red"] {
@@ -100,10 +100,10 @@ p[style="color:red"] {
 <h2>Thêm Giảng viên</h2>
 <?php if(isset($err)): ?><p style="color:red"><?= esc($err) ?></p><?php endif; ?>
 <form method="post" enctype="multipart/form-data">
-    <div class="form-row"><label>Họ tên</label><input name="name" required></div>
+    <div class="form-row"><label>Họ tên</label><input name="name" type="text" required></div>
     <div class="form-row"><label>Email</label><input name="email" type="email"></div>
-    <div class="form-row"><label>Phone</label><input name="phone"></div>
-    <div class="form-row"><label>Khoa</label><input name="department"></div>
+    <div class="form-row"><label>Phone</label><input name="phone" type="text"></div>
+    <div class="form-row"><label>Khoa</label><input name="department" type="text"></div>
     <div class="form-row"><label>Ảnh</label><input name="photo" type="file"></div>
     <button class="btn">Lưu</button>
 </form>

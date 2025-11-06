@@ -16,9 +16,8 @@ body {
 
 h2 {
     text-align: center;
-    margin-top: 40px;
-    color: #343a40;
-    font-size: 28px;
+    margin: 30px;
+    color: #343a40; 
 }
 
 .notice {

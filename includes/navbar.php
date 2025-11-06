@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(180deg, #072f6fff 0%, #215dc6ff 100%);
+    background:#215dc6ff;
     padding: 15px 30px;
     color: #ecf0f1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -53,7 +53,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     left: 0;
     height: 100%;
     width: 220px;
-    background: linear-gradient(180deg, #072f6fff 0%, #215dc6ff 100%);
+    background:#215dc6ff;
     padding-top: 20px;
     transition: width 0.3s ease, left 0.3s ease;
     overflow: hidden;
@@ -109,6 +109,11 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 
   .sidebar.collapsed ~ .main-content {
     margin-left: 60px;
+  }
+
+  /* Adjust container margin when sidebar is collapsed */
+  .sidebar.collapsed ~ main.container {
+    margin-left: 100px;
   }
 </style>
 
