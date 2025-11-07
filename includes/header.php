@@ -36,8 +36,8 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     /* ensure main area expands to fill available space */
     main.container {
       flex: 1;
-      max-width: 1200px;
-      margin: 30px 40px 30px 260px;
+      /* max-width: 1200px; */
+      margin: 30px 0 ;
       padding: 30px;
       background-color: rgba(255, 255, 255, 0.9);
       border-radius: 10px;

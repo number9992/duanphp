@@ -21,10 +21,8 @@ h2 {
 }
 
 a.btn {
-    display: block;
-    width: fit-content;
-    margin: 0 auto 20px auto;
-    margin-left:53px;
+    display: inline-block;
+    margin: 20px 0 20px 0;
     padding: 10px 20px;
     background-color: #3498db;
     color: white;
@@ -39,8 +37,8 @@ a.btn:hover {
 }
 
 table {
-    width: 90%;
-    margin: 0 auto 40px auto;
+    width: 100%;
+    margin: 0 0 40px 0;
     border-collapse: collapse;
     background-color: white;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -106,4 +104,10 @@ footer {
     </tr>
     <?php endwhile; ?>
 </table>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    var cw = document.querySelector('.content-wrapper');
+    if(cw) cw.classList.add('wide');
+});
+</script>
 <?php include __DIR__ . '/../../includes/footer.php'; ?>

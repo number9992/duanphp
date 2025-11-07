@@ -89,4 +89,10 @@ table td a:hover {
     </tr>
     <?php endwhile; ?>
 </table>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var cw = document.querySelector('.content-wrapper');
+  if(cw) cw.classList.add('wide');
+});
+</script>
 <?php include __DIR__ . '/../../includes/footer.php'; ?>
