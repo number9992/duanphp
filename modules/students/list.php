@@ -16,13 +16,14 @@ $res = $conn->query("SELECT * FROM students ORDER BY id DESC");
 
 h2 {
     text-align: center;
-    margin-top: 30px;
+    margin: 30px;
     color: #2c3e50;
 }
 
 a.btn {
     display: inline-block;
     margin: 20px auto;
+    margin-left:53px;
     padding: 10px 20px;
     background-color: #3498db;
     color: white;
@@ -33,7 +34,7 @@ a.btn {
 }
 
 a.btn:hover {
-    background-color: #2980b9;
+    background-color: #3498db;
 }
 
 table {
@@ -78,8 +79,8 @@ a:hover {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #2c3e50;
-    color: white;
+    background-color: #f4f6f8;
+    color: #2c3e50; 
     font-size: 14px;
 }</style>
 <h2>Danh sách Sinh viên</h2>
