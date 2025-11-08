@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('/duanphp/asset/img/bg-login.jpg') center/cover no-repeat;
+            background: url('asset/img/bg-login.jpg') center/cover no-repeat;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -273,7 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <div class="header-login">
         <div class="university-header">
-            <img src="/duanphp/asset/img/logologin.png" alt="Logo trường" class="university-logo">
+            <img src="asset/img/logologin.png" alt="Logo trường" class="university-logo">
         </div>
     <div class="login-container">
         <h2>ĐĂNG NHẬP</h2>

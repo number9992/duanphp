@@ -79,10 +79,29 @@ switch ($url) {
     case 'scores/delete':
         include 'modules/scores/delete.php';
         break;
-        
+    case 'semesters':
+        include 'modules/semesters/list.php';
+        break;
+    case 'semesters/add':
+        include 'modules/semesters/add.php';
+        break;
+    case 'class_sections':
+        include 'modules/class_sections/list.php';
+        break;
+    case 'class_sections/add':
+        include 'modules/class_sections/add.php';
+        break;
+    case 'class_sections/enroll':
+        include 'modules/class_sections/enroll.php';
+        break;
+    case 'class_sections/process_enroll':
+         include 'modules/class_sections/process_enroll.php';
+         break;
+
     case 'logout':
         include '/logout.php';
         break;
+    
 
     default:
         echo "<div class='container mt-4'><h2 class='text-danger'>404 - Trang không tồn tại</h2></div>";

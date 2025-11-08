@@ -113,9 +113,21 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     margin-left: 60px;
   }
 
-  /* Adjust container margin when sidebar is collapsed */
-  .sidebar.collapsed ~ main.container {
-    margin-left: 100px;
+
+  /* Đảm bảo nội dung luôn nằm bên phải sidebar */
+  @media screen and (min-width: 768px) {
+    .wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+    #main-content {
+      flex: 1;
+      width: calc(100% - 220px);
+    }
+    .sidebar.collapsed ~ #main-content {
+      width: calc(100% - 60px);
+    }
+
   }
 </style>
 
@@ -143,6 +155,12 @@ if (session_status() === PHP_SESSION_NONE) session_start();
       <a href="?url=teacher"><i>👨‍🏫</i><span>Giảng viên</span></a>
       <a href="?url=courses"><i>📘</i><span>Môn học</span></a>
       <a href="?url=scores"><i>📊</i><span>Điểm</span></a>
+      <a href="?url=scores"><i>📊</i><span>thời khóa biểu</span></a>
+      <a href="?url=semesters"><i>📊</i><span>quản lý kỳ học</span></a>
+      <a href="?url=class_sections"><i>📊</i><span>quản lý lớp học phần </span></a>
+
+
+
     </div>
     
     <div id="main-content">
