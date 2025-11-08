@@ -53,9 +53,9 @@ table th, table td {
 }
 
 table th {
-    background-color: #34495e;
-    color: white;
-    font-weight: 600;
+  background-color: #215dc6ff;
+  color: white;
+  font-weight: 600;
 }
 
 table tr:hover {

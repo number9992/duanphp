@@ -21,102 +21,107 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $err = "Username & password bắt buộc.";
     }
 }
-include __DIR__ . '/../includes/header.php';
 ?>
-<h2>Đăng ký user mới</h2>
-<style>/* register.css */
+<style>/* register.css using bg-login */
 
-body {
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
+    background: url('/duanphp/asset/img/bg-login.jpg') center/cover no-repeat;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
 }
 
-h2 {
-    text-align: center;
-    margin-top: 40px;
-    color: #333;
+/* translucent centered card like login */
+.register-container{
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 48px;
+    width: 600px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
-form {
-    max-width: 450px;
-    margin: 30px auto;
-    padding: 25px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+h2{ 
+    text-align:center;
+     color:#2c3e50; 
+     margin-bottom:16px; 
+     font-size:24px 
+    }
+
+.form-row{ 
+    margin-bottom:16px 
+}
+.form-row label{ 
+    display:block; 
+    margin-bottom:6px; 
+    font-weight:600; 
+    color:#555 
+}
+.form-row input, .form-row select{ 
+    width:100%; 
+    padding:12px 14px; 
+    border:1px solid #e1e5e9; 
+    border-radius:10px; 
+    font-size:14px; 
+    background:#f8f9fa 
 }
 
-.form-row {
-    margin-bottom: 20px;
+.btn{ 
+    width:100%; 
+    padding:14px; 
+    background:linear-gradient(135deg,#4a90e2 0%,#357abd 100%); 
+    color:#fff; 
+    border:none; 
+    border-radius:12px; 
+    font-weight:700; 
+    cursor:pointer 
+}
+.btn:hover{ 
+    transform:translateY(-2px); 
+    box-shadow:0 10px 20px rgba(74,144,226,0.2) 
 }
 
-.form-row label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    color: #555;
+.notice{ 
+    text-align:center; 
+    color:#28a745; 
+    font-weight:700; 
+    margin-top:10px 
 }
-
-.form-row input,
-.form-row select {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 14px;
+p[style="color:red"]{ 
+    text-align:center; 
+    font-weight:700; 
+    margin-top:10px 
 }
-
-.btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #218838;
-}
-
-.notice {
-    text-align: center;
-    color: #28a745;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-p[style="color:red"] {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 10px;
-}</style>
-<?php if(isset($msg)): ?><p class="notice"><?= esc($msg) ?></p><?php endif; ?>
-<?php if(isset($err)): ?><p style="color:red"><?= esc($err) ?></p><?php endif; ?>
-<form method="post">
-    <div class="form-row">
-        <label>Username</label><input name="username" required>
-    </div>
-    <div class="form-row">
-        <label>Password</label><input name="password" type="password" required>
-    </div>
-    <div class="form-row">
-        <label>Tên</label><input name="name">
-    </div>
-    <div class="form-row">
-        <label>Role</label>
-        <select name="role">
-            <option value="admin">admin</option>
-            <option value="teacher">teacher</option>
-        </select>
-    </div>
-    <button class="btn">Tạo user</button>
-</form>
-<?php include __DIR__ . '/../includes/footer.php'; ?>
+</style>
+<div class="register-container">
+    <h2>Đăng ký user mới</h2>
+    <?php if(isset($msg)): ?><p class="notice"><?= esc($msg) ?></p><?php endif; ?>
+    <?php if(isset($err)): ?><p style="color:red"><?= esc($err) ?></p><?php endif; ?>
+    <form method="post">
+        <div class="form-row">
+            <label>Username</label>
+            <input name="username" required />
+        </div>
+        <div class="form-row">
+            <label>Password</label>
+            <input name="password" type="password" required />
+        </div>
+        <div class="form-row">
+            <label>Tên</label>
+            <input name="name" />
+        </div>
+        <div class="form-row">
+            <label>Role</label>
+            <select name="role">
+                <option value="admin">admin</option>
+                <option value="teacher">teacher</option>
+            </select>
+        </div>
+        <button class="btn">Tạo user</button>
+    </form>
+</div>

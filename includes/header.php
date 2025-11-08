@@ -59,16 +59,6 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     }
 
     /* ======= Navbar ======= */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(44, 62, 80, 0.95);
-      padding: 15px 30px;
-      color: #ecf0f1;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
     .navbar a {
       color: #ecf0f1;
       text-decoration: none;

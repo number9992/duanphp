@@ -57,8 +57,8 @@ table th, table td {
 }
 
 table th {
-  background-color: #ecf0f1;
-  color: #34495e;
+  background-color: #215dc6ff;
+  color: white;
   font-weight: 600;
 }
 

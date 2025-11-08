@@ -16,7 +16,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     justify-content: space-between;
     align-items: center;
     background:#215dc6ff;
-    padding: 15px 30px;
+    padding: 10px;
     color: #ecf0f1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -34,7 +34,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
   }
 
   .navbar a:hover {
-    color: #1abc9c;
+   color: #f58d1fff;
   }
 
   .brand {
@@ -86,7 +86,8 @@ if (session_status() === PHP_SESSION_NONE) session_start();
   }
 
   .sidebar a:hover {
-    background-color: rgba(148, 250, 247, 0.85);
+    /* background-color: rgba(148, 250, 247, 0.85); */
+    color: #f58d1fff;
     border-left: 3px solid #4CAF50;
     padding-left: 22px;
   }
@@ -187,6 +188,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 <div class="page-container">
   <nav class="navbar">
     <div style="display: flex; align-items: center;">
+      <img src="asset/img/logo.png" alt="Logo" style="height:40px; margin-right:10px;">
       <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
       <span class="brand">QL Sinh viên</span>
     </div>

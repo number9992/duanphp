@@ -39,7 +39,11 @@ a.btn:hover {
 table {
     width: 100%;
     margin: 0 0 40px 0;
-    border-collapse: collapse;
+    /* use separate so we can add rounded corners to the header */
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     background-color: white;
 }
@@ -51,9 +55,17 @@ table th, table td {
 }
 
 table th {
-    background-color: #2c3e50;
+    background-color: #215dc6ff; /* match other tables */
     color: white;
     font-weight: 600;
+}
+
+/* rounded corners for the table header cells */
+table tr:first-child th:first-child {
+    border-top-left-radius: 8px;
+}
+table tr:first-child th:last-child {
+    border-top-right-radius: 8px;
 }
 
 table tr:hover {
