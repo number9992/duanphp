@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../includes/functions.php';
+
 if (session_status() === PHP_SESSION_NONE) session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -8,18 +9,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if ($username && $password) {
-        $stmt = $conn->prepare("SELECT id, password, role, name FROM users WHERE username = ?");
-        $stmt->bind_param('s',$username);
+        // Lấy user và role_name từ bảng roles
+        $stmt = $conn->prepare("
+            SELECT u.id, u.username, u.password, u.name, r.role_name 
+            FROM users u
+            JOIN roles r ON u.role_id = r.id
+            WHERE u.username = ? 
+            LIMIT 1
+        ");
+        $stmt->bind_param('s', $username);
         $stmt->execute();
-        $res = $stmt->get_result();
-        if ($row = $res->fetch_assoc()) {
-            $hash = $row['password'];
-            // If hash is SHA2 from SQL migration, handle both:
-            if (password_verify($password, $hash) || hash('sha256',$password) === $hash) {
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['user_name'] = $row['name'] ?? $username;
-                $_SESSION['user_role'] = $row['role'];
-               header('Location: ?url=dashboard');
+        $user = $stmt->get_result()->fetch_assoc();
+
+        if ($user) {
+            $hash = $user['password'];
+
+            if (password_verify($password, $hash)) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['role_name']; // Lấy từ roles
+                $_SESSION['name'] = $user['name'];
+
+                // Chuyển hướng theo role
+                switch($user['role_name']) {
+                    case 'teacher':
+                        header('Location: ?url=giang_vien');
+                        break;
+                    case 'student':
+                        header('Location: ?url=dashboard');
+                        break;
+                    case 'admin':
+                    default:
+                        header('Location: ?url=dashboard');
+                        break;
+                }
                 exit;
             } else {
                 $err = "Sai username hoặc mật khẩu.";
@@ -32,6 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -47,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('/duanphp/asset/img/bg-login.jpg') center/cover no-repeat;
+            background: url('asset/img/bg-login.jpg') center/cover no-repeat;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -273,7 +300,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <div class="header-login">
         <div class="university-header">
-            <img src="/duanphp/asset/img/logologin.png" alt="Logo trường" class="university-logo">
+            <img src="asset/img/logologin.png" alt="Logo trường" class="university-logo">
         </div>
     <div class="login-container">
         <h2>ĐĂNG NHẬP</h2>
@@ -299,6 +326,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <div class="forgot-password">
             <a href="#">Quên mật khẩu?</a> • <a href="#">Trợ giúp!</a>
+            <a href="?url=register">đăng ký</a>
         </div>
     </div>
 

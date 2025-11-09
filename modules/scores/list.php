@@ -16,14 +16,13 @@ $res = $conn->query("SELECT s.*, st.name as student_name, c.name as course_name
   font-family: 'Segoe UI', Tahoma, sans-serif;
   background-color: #f4f6f9;
   margin: 0;
-  padding: 20px;
   color: #333;
 }
 
 h2 {
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 30px;
+  margin: 30px;
 }
 
 a.btn {
