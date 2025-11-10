@@ -5,7 +5,14 @@ requireLogin();
 
 // Lấy danh sách sinh viên kèm tên lớp
 $sql = "
-    SELECT st.id, st.name, st.email, st.phone, st.photo, c.class_name
+    SELECT 
+        st.id, 
+        st.student_code, -- <--- 1. THÊM student_code VÀO ĐÂY
+        st.name, 
+        st.email, 
+        st.phone, 
+        st.photo, 
+        c.class_name
     FROM students st
     LEFT JOIN classes c ON st.class_id = c.id
     ORDER BY st.id DESC
@@ -20,12 +27,21 @@ include __DIR__ . '/../../includes/header.php';
 
 <table>
     <tr>
-        <th>ID</th><th>Ảnh</th><th>Họ tên</th><th>Email</th><th>Phone</th><th>Lớp</th><th>Hành động</th>
+        <th>ID</th>
+        <th>Ảnh</th>
+        <th>Mã sinh viên</th> <th>Họ tên</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Lớp</th>
+        <th>Hành động</th>
     </tr>
     <?php while($row = $res->fetch_assoc()): ?>
     <tr>
         <td><?= esc($row['id']) ?></td>
         <td><?php if($row['photo']): ?><img src="/<?= esc($row['photo']) ?>" style="height:48px"><?php endif; ?></td>
+        
+        <td><?= esc($row['student_code']) ?></td> 
+        
         <td><?= esc($row['name']) ?></td>
         <td><?= esc($row['email']) ?></td>
         <td><?= esc($row['phone']) ?></td>
