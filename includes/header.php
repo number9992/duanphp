@@ -17,7 +17,15 @@ if (session_status() === PHP_SESSION_NONE) session_start();
       box-sizing: border-box;
     }
 
+    /* make page a column flex so footer can stick to bottom */
+    html, body {
+      height: 100%;
+    }
+
     body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: url('/public/images/bg.jpg') no-repeat center center fixed;
       background-size: cover;
@@ -25,17 +33,32 @@ if (session_status() === PHP_SESSION_NONE) session_start();
       line-height: 1.6;
     }
 
-    /* ======= Navbar ======= */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(44, 62, 80, 0.95);
-      padding: 15px 30px;
-      color: #ecf0f1;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* ensure main area expands to fill available space */
+    main.container {
+      flex: 1;
+      /* max-width: 1200px; */
+      margin: 30px 0 ;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      transition: margin-left 0.3s ease;
     }
 
+    main.container h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    main.container p {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* ======= Navbar ======= */
     .navbar a {
       color: #ecf0f1;
       text-decoration: none;
@@ -64,26 +87,13 @@ if (session_status() === PHP_SESSION_NONE) session_start();
       font-style: italic;
     }
 
-    /* ======= Container ======= */
-    .container {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 30px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .container h1 {
-      color: #2c3e50;
+    /* ======= Footer (match navbar color) ======= */
+    footer.footer {
+      background:#215dc6ff;
+      color: #fff;
+      padding: 15px 0;
       text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .container p {
-      text-align: center;
-      font-style: italic;
-      color: #555;
+      font-size: 14px;
     }
   </style>
 </head>

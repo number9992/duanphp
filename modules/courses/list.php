@@ -15,15 +15,14 @@ $res = $conn->query("SELECT c.*, t.name as teacher_name FROM courses c LEFT JOIN
       body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
   background-color: #f4f6f9;
-  margin: 0;
-  padding: 20px;
+  margin: 0;  
   color: #333;
 }
 
 h2 {
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 30px;
+  margin: 30px;
 }
 
 a.btn {
@@ -58,8 +57,8 @@ table th, table td {
 }
 
 table th {
-  background-color: #ecf0f1;
-  color: #34495e;
+  background-color: #215dc6ff;
+  color: white;
   font-weight: 600;
 }
 
@@ -90,4 +89,10 @@ table td a:hover {
     </tr>
     <?php endwhile; ?>
 </table>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var cw = document.querySelector('.content-wrapper');
+  if(cw) cw.classList.add('wide');
+});
+</script>
 <?php include __DIR__ . '/../../includes/footer.php'; ?>

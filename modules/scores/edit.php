@@ -1,9 +1,3 @@
-
-
-
-
-<!--  -->
-
 <?php
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../includes/functions.php';
@@ -28,14 +22,94 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($student_id && $course_id) {
         $u = $conn->prepare("UPDATE scores SET student_id=?,course_id=?,score=? WHERE id=?");
         $u->bind_param('iidi',$student_id,$course_id,$score,$id);
-        if ($u->execute()) { header('Location:list.php'); exit; } else $err = $u->error;
+        if ($u->execute()) { header('Location:?url=scores'); exit; } else $err = $u->error;
     } else $err = "Chọn sinh viên và môn học.";
 }
 
 include __DIR__ . '/../../includes/header.php';
 ?>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #34495e;
+}
+
+.form-row input,
+.form-row select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color .3s ease;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+p[style*="color:red"] {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+</style>
+
 <h2>Sửa Điểm</h2>
+
 <?php if(isset($err)): ?><p style="color:red"><?= esc($err) ?></p><?php endif; ?>
+
 <form method="post">
     <div class="form-row"><label>Sinh viên</label>
         <select name="student_id" required>
@@ -51,7 +125,10 @@ include __DIR__ . '/../../includes/header.php';
             <?php endwhile; ?>
         </select>
     </div>
-    <div class="form-row"><label>Điểm</label><input name="score" type="number" step="0.01" min="0" max="100" value="<?= esc($scoreRow['score']) ?>" required></div>
+    <div class="form-row"><label>Điểm</label>
+        <input name="score" type="number" step="0.01" min="0" max="100" value="<?= esc($scoreRow['score']) ?>" required>
+    </div>
     <button class="btn">Cập nhật</button>
 </form>
+
 <?php include __DIR__ . '/../../includes/footer.php'; ?>
