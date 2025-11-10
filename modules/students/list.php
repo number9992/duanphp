@@ -2,104 +2,116 @@
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../includes/functions.php';
 requireLogin();
-include __DIR__ . '/../../includes/header.php';
 
-$res = $conn->query("SELECT * FROM students ORDER BY id DESC");
+// Lấy danh sách sinh viên kèm tên lớp
+$sql = "
+    SELECT st.id, st.name, st.email, st.phone, st.photo, c.class_name
+    FROM students st
+    LEFT JOIN classes c ON st.class_id = c.id
+    ORDER BY st.id DESC
+";
+$res = $conn->query($sql);
+
+include __DIR__ . '/../../includes/header.php';
 ?>
-<style>body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8;
+<h2>Danh sách Sinh viên</h2>
+<a class="btn" href="?url=student/add">+ Thêm sinh viên</a>
+
+<style>
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f9;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     color: #333;
 }
 
 h2 {
-    text-align: center;
-    margin-top: 30px;
     color: #2c3e50;
+    margin-bottom: 20px;
 }
 
 a.btn {
     display: inline-block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
+    padding: 10px 15px;
+    background: #3498db;
+    color: #fff;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    margin-bottom: 15px;
 }
 
 a.btn:hover {
-    background-color: #2980b9;
+    background: #2980b9;
 }
 
 table {
-    width: 90%;
-    margin: 0 auto 40px auto;
+    width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    background-color: white;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 table th, table td {
     padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
+    text-align: left;
+    vertical-align: middle;
 }
 
 table th {
-    background-color: #2c3e50;
-    color: white;
+    background: #34495e;
+    color: #fff;
     font-weight: 600;
 }
 
+table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
 table tr:hover {
-    background-color: #f1f1f1;
+    background: #ecf0f1;
 }
 
-img {
-    border-radius: 5px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+table td img {
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    height: 48px;
+    width: 48px;
+    object-fit: cover;
 }
 
-a {
+table td a {
     color: #3498db;
     text-decoration: none;
+    font-weight: 500;
+    margin: 0 5px;
 }
 
-a:hover {
+table td a:hover {
     text-decoration: underline;
-    color: #2980b9;
 }
+</style>
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #2c3e50;
-    color: white;
-    font-size: 14px;
-}</style>
-<h2>Danh sách Sinh viên</h2>
-
-<a class="btn" href="?url=student/add">+ Thêm sinh viên</a>
 <table>
-    <tr><th>ID</th><th>Ảnh</th><th>Họ tên</th><th>Email</th><th>Phone</th><th>Lớp</th><th>Hành động</th></tr>
+    <tr>
+        <th>ID</th><th>Ảnh</th><th>Họ tên</th><th>Email</th><th>Phone</th><th>Lớp</th><th>Hành động</th>
+    </tr>
     <?php while($row = $res->fetch_assoc()): ?>
     <tr>
         <td><?= esc($row['id']) ?></td>
-        <td><?php if($row['photo']): ?><img src="/<?= esc($row['photo']) ?>" alt="" style="height:48px"><?php endif; ?></td>
+        <td><?php if($row['photo']): ?><img src="/<?= esc($row['photo']) ?>" style="height:48px"><?php endif; ?></td>
         <td><?= esc($row['name']) ?></td>
         <td><?= esc($row['email']) ?></td>
         <td><?= esc($row['phone']) ?></td>
-        <td><?= esc($row['class']) ?></td>
+        <td><?= esc($row['class_name']) ?></td>
         <td>
-            <a href="?url=student/edit&id=<?= $row['id'] ?>">Sửa</a>
-            <a href="?url=student/delete&id=<?= $row['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a>
+            <a href="?url=student/edit&id=<?= $row['id'] ?>">Sửa</a> | <a href="?url=student/delete&id=<?= $row['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a>
         </td>
     </tr>
     <?php endwhile; ?>
 </table>
+
 <?php include __DIR__ . '/../../includes/footer.php'; ?>

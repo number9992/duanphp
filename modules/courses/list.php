@@ -15,15 +15,14 @@ $res = $conn->query("SELECT c.*, t.name as teacher_name FROM courses c LEFT JOIN
       body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
   background-color: #f4f6f9;
-  margin: 0;
-  padding: 20px;
+  margin: 0;  
   color: #333;
 }
 
 h2 {
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 30px;
+  margin: 30px;
 }
 
 a.btn {
@@ -76,6 +75,11 @@ table td a {
 table td a:hover {
   text-decoration: underline;
 }
+
+ footer {
+  text-align: center;
+} 
+
 </style>
 <a class="btn" href="?url=courses/add">+ Thêm môn</a>
 <table>

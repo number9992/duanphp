@@ -17,12 +17,45 @@ if (session_status() === PHP_SESSION_NONE) session_start();
       box-sizing: border-box;
     }
 
+    /* make page a column flex so footer can stick to bottom */
+    html, body {
+      height: 100%;
+    }
+
     body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: url('/public/images/bg.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #333;
       line-height: 1.6;
+    }
+
+    /* ensure main area expands to fill available space */
+    main.container {
+      flex: 1;
+      max-width: 100%;
+      margin: 30px 40px 30px 40px;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+
+    main.container h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    main.container p {
+      text-align: center;
+      font-style: italic;
+      color: #555;
     }
 
     /* ======= Navbar ======= */
@@ -64,26 +97,13 @@ if (session_status() === PHP_SESSION_NONE) session_start();
       font-style: italic;
     }
 
-    /* ======= Container ======= */
-    .container {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 30px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .container h1 {
-      color: #2c3e50;
+    /* ======= Footer (match navbar color) ======= */
+    footer.footer {
+      background:#215dc6ff;
+      color: #fff;
+      padding: 15px 0;
       text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .container p {
-      text-align: center;
-      font-style: italic;
-      color: #555;
+      font-size: 14px;
     }
   </style>
 </head>

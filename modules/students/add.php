@@ -3,118 +3,153 @@ require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../includes/functions.php';
 requireLogin();
 
-//  bắt dữ liệu bên người dùng nyhaapj 
+// Lấy danh sách lớp để chọn
+$classesRes = $conn->query("SELECT id, class_name FROM classes ORDER BY grade_level, class_name");
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
-    $class = trim($_POST['class'] ?? '');
+    $class_id = intval($_POST['class_id'] ?? 0); // ✅ Lưu class_id
     $photo = uploadImage($_FILES['photo'] ?? null);
 
-    if ($name) {
-        //  đây là xử lsy vs db bằng câu lênh inserinto vào db 
-        $stmt = $conn->prepare("INSERT INTO students (name,email,phone,class,photo) VALUES (?,?,?,?,?)");
-        $stmt->bind_param('sssss',$name,$email,$phone,$class,$photo);
-        //  gán dữ liệu bắt  để truyền vào 
+    if ($name && $class_id) {
+        $stmt = $conn->prepare("INSERT INTO students (name, email, phone, class_id, photo) VALUES (?,?,?,?,?)");
+        $stmt->bind_param('sssis', $name, $email, $phone, $class_id, $photo);
+
         if ($stmt->execute()) {
             header('Location: ?url=student');
-            //  nếu mà thành công thì sẽ sang trang list student 
             exit;
         } else {
             $err = $stmt->error;
-            //  nếu thất bại sẽ báo lỗi 
         }
-    } else $err = "Tên bắt buộc.";
-
-
+    } else {
+        $err = "Tên và lớp là bắt buộc.";
+    }
 }
 
 include __DIR__ . '/../../includes/header.php';
 ?>
+
 <h2>Thêm Sinh viên</h2>
+
 <style>
-    /* student_add.css */
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-}
-
-h2 {
-    text-align: center;
-    margin-top: 40px;
-    color: #2c3e50;
-    font-size: 28px;
-}
-
+    /* ===== Khung form tổng ===== */
 form {
-    max-width: 500px;
-    margin: 30px auto;
-    padding: 25px;
     background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.form-row {
+/* ===== Tiêu đề ===== */
+h2 {
+    color: #0a2a5c;
+    text-align: center;
     margin-bottom: 20px;
 }
 
-.form-row label {
-    display: block;
-    margin-bottom: 6px;
+/* ===== Nhóm input ===== */
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Label ===== */
+form label {
     font-weight: 600;
-    color: #34495e;
+    color: #1e3a8a;
+    margin-bottom: 6px;
+    font-size: 15px;
 }
 
-.form-row input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 14px;
+/* ===== Input, select, file ===== */
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form input[type="tel"],
+form select {
+    padding: 10px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: #f9fafb;
 }
 
-.form-row input[type="file"] {
-    padding: 6px;
-    font-size: 13px;
+form input:focus,
+form select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    outline: none;
+    background-color: #ffffff;
 }
 
-.btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #3498db;
-    color: white;
+/* ===== Nút lưu ===== */
+form .btn {
+    background-color: #3c66d7ff;
+    color: #fff;
+    font-weight: 600;
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.2s, transform 0.1s;
 }
 
-.btn:hover {
-    background-color: #2980b9;
+form .btn:hover {
+    background-color: #1e40af;
+    transform: translateY(-1px);
 }
 
-p[style="color:red"] {
+/* ===== Thông báo lỗi ===== */
+p[style*="color:red"] {
     text-align: center;
-    font-weight: bold;
-    margin-top: 10px;
+    font-weight: 500;
+    background: #fee2e2;
+    color: #b91c1c !important;
+    border: 1px solid #fecaca;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
+
 </style>
-<!--  báo lỗi -->
+
 <?php if(isset($err)): ?><p style="color:red"><?= esc($err) ?></p><?php endif; ?>
-    <!--  sẽ có 2 dạng get và post  get là để lấy dữ liệu từ db , post sẽ gửi dữ liệu từ người dùng vào db  -->
 <form method="post" enctype="multipart/form-data">
-    <div class="form-row"><label>Họ tên</label><input name="name" required></div>
-    <div class="form-row"><label>Email</label><input name="email" type="email"></div>
-    <div class="form-row"><label>Phone</label><input name="phone"></div>
-    <div class="form-row"><label>Lớp</label><input name="class"></div>
-    <div class="form-row"><label>Ảnh</label><input name="photo" type="file" accept="image/*"></div>
+    <div>
+        <label>Họ tên</label>
+        <input name="name" required>
+    </div>
+    <div>
+        <label>Email</label>
+        <input name="email" type="email">
+    </div>
+    <div>
+        <label>Phone</label>
+        <input name="phone">
+    </div>
+    <div>
+        <label>Lớp</label>
+        <select name="class_id" required>
+            <option value="">-- Chọn lớp --</option>
+            <?php while($c = $classesRes->fetch_assoc()): ?>
+                <option value="<?= $c['id'] ?>"><?= esc($c['class_name']) ?></option>
+            <?php endwhile; ?>
+        </select>
+    </div>
+    <div>
+        <label>Ảnh</label>
+        <input name="photo" type="file" accept="image/*">
+    </div>
     <button class="btn">Lưu</button>
 </form>
+
 <?php include __DIR__ . '/../../includes/footer.php'; ?>
