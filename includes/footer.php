@@ -36,6 +36,6 @@ body {
 <footer class="footer">
   <div class="container">© <?= date('Y') ?> Quản lý Sinh viên &amp; Giảng viên</div>
 </footer>
-<script src="/public/js/main.js"></script>
+<script src="public/js/main.js"></script>
 </body>
 </html>
