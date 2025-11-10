@@ -25,8 +25,8 @@ function requireLogin(): void {
  * Hàm escape để bảo vệ XSS
  */
 if (!function_exists('esc')) {
-    function esc(string $str): string {
-        return htmlspecialchars($str, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    function esc(?string $str): string {
+        return htmlspecialchars($str??'', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     }
 }
 

@@ -4,11 +4,10 @@ require_once __DIR__ . '/../../includes/functions.php';
 requireLogin();
 
 $id = intval($_GET['id'] ?? 0);
-if($id){
-    $stmt = $conn->prepare("DELETE FROM classes WHERE id=?");
-    $stmt->bind_param('i', $id);
+if ($id) {
+    $stmt = $conn->prepare("DELETE FROM timetables WHERE id = ?");
+    $stmt->bind_param('i',$id);
     $stmt->execute();
 }
-
-header('Location: ?url=class');
+ header('Location: ?url=timetables');
 exit;

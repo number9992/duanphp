@@ -36,14 +36,14 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     /* ensure main area expands to fill available space */
     main.container {
       flex: 1;
-      max-width: 1200px;
-      margin: 30px 40px 30px 260px;
+      max-width: 100%;
+      margin: 30px 40px 30px 40px;
       padding: 30px;
       background-color: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       box-sizing: border-box;
-      transition: margin-left 0.3s ease;
+      transition: margin-left 0.3s ease, width 0.3s ease;
     }
 
     main.container h1 {

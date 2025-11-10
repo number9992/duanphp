@@ -112,12 +112,28 @@ switch ($url) {
     case 'class/add':
          include 'modules/class/add.php';
          break; 
+
+    case  'class/edit':
+        include 'modules/class/edit.php';
+        break;
+    case  'class/delete':
+        include 'modules/class/delete.php';
+        break;     
+
     case 'subjects':
-         include 'modules/Subjects/list.php';
+         include 'modules/subjects/list.php';
          break; 
      case 'subjects/add':
-         include 'modules/Subjects/add.php';
+         include 'modules/subjects/add.php';
          break;    
+
+    case  'subjects/edit':
+        include 'modules/subjects/edit.php';
+        break;
+    case  'subjects/delete':
+        include 'modules/subjects/delete.php';
+        break;
+
     case 'class_subjects':
          include 'modules/Class_subjects/list.php';
          break; 
@@ -131,6 +147,12 @@ switch ($url) {
          include 'modules/timetables/add.php';
          break; 
 
+    case  'timetables/edit':
+        include 'modules/timetables/edit.php';
+        break;
+    case  'timetables/delete':
+        include 'modules/timetables/delete.php';
+        break;
 
     case 'grades':
          include 'modules/grades/totalClass.php';
