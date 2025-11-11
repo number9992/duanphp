@@ -75,6 +75,11 @@ table td a {
 table td a:hover {
   text-decoration: underline;
 }
+
+ footer {
+  text-align: center;
+} 
+
 </style>
 <a class="btn" href="?url=courses/add">+ Thêm môn</a>
 <table>

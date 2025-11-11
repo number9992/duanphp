@@ -39,29 +39,28 @@ a.btn:hover {
 }
 
 table {
-    width: 100%;
-    margin: 0 0 40px 0;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 table th, table td {
-    padding: 14px 16px;
-    text-align: center;
-    border-bottom: 1px solid #e0e0e0;
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
 }
 
 table th {
-  background-color: #215dc6ff;
-  color: white;
+  background-color: #ecf0f1;
+  color: #34495e;
   font-weight: 600;
 }
 
 table tr:hover {
-    background-color: #f1f1f1;
+  background-color: #f9f9f9;
 }
 
 img {
@@ -70,15 +69,14 @@ img {
     height:48px;
 }
 
-a {
-    color: #2980b9;
-    text-decoration: none;
-    font-weight: 500;
+table td a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-a:hover {
-    text-decoration: underline;
-    color: #1c6ea4;
+table td a:hover {
+  text-decoration: underline;
 }
 
 footer {

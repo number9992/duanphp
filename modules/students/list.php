@@ -14,7 +14,6 @@ $res = $conn->query($sql);
 
 include __DIR__ . '/../../includes/header.php';
 ?>
-
 <h2>Danh sách Sinh viên</h2>
 <a class="btn" href="?url=student/add">+ Thêm sinh viên</a>
 
@@ -31,8 +30,7 @@ include __DIR__ . '/../../includes/header.php';
         <td><?= esc($row['phone']) ?></td>
         <td><?= esc($row['class_name']) ?></td>
         <td>
-            <a href="?url=student/edit&id=<?= $row['id'] ?>">Sửa</a>
-            <a href="?url=student/delete&id=<?= $row['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a>
+            <a href="?url=student/edit&id=<?= $row['id'] ?>">Sửa</a> | <a href="?url=student/delete&id=<?= $row['id'] ?>" onclick="return confirm('Xóa?')">Xóa</a>
         </td>
     </tr>
     <?php endwhile; ?>
