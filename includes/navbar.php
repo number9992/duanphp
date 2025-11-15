@@ -67,7 +67,7 @@ $userRole = $_SESSION['role'] ?? '';
         <a href="?url=student"><i>🎓</i><span>Sinh viên</span></a>
         <a href="?url=register"><i>👨‍🏫</i><span>thêm người quản lý </span></a>
         <!-- <a href="?url=courses"><i>📘</i><span>Môn học</span></a> -->
-        <!-- <a href="?url=grades"><i>📊</i><span>Điểm</span></a> -->
+        <a href="?url=teacher"><i>📊</i><span>giáo viên</span></a>
         <a href="?url=class"><i>📊</i><span>Quản lý lớp học phần</span></a>
         <a href="?url=subjects"><i>📊</i><span>Quản lý môn học</span></a>
         <!-- <a href="?url=class_subjects"><i>👨‍🏫</i><span>Phân môn cho lớp</span></a> -->

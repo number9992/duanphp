@@ -161,6 +161,21 @@ switch ($url) {
     case 'logout':
         include '/logout.php';
         break;
+    case 'logout':
+        include '/logout.php';
+        break;
+    case 'sinhvien':
+        include 'modules/sinh_vien/TrangChu.php';
+        break;    
+    case 'sinhvien/dashboard_student':
+        include 'modules/sinh_vien/dashboard_student.php';
+        break;   
+    case 'sinhvien/student_timetable':
+        include 'modules/sinh_vien/student_timetable.php';
+        break;
+    case 'sinhvien/student_grades':
+        include 'modules/sinh_vien/student_grades.php';
+        break;
     
     
 

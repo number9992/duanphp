@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         header('Location: ?url=giang_vien');
                         break;
                     case 'student':
-                        header('Location: ?url=dashboard');
+                        header('Location: ?url=sinhvien');
                         break;
                     case 'admin':
                     default:
